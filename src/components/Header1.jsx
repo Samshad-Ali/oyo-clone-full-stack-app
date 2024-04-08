@@ -1,16 +1,32 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Block from "./Block";
+import Cookies from "js-cookie";
 import { PiSuitcaseSimple, PiBuildings } from "react-icons/pi";
 import { IoCallOutline } from "react-icons/io5";
+import { useRouter } from "next/navigation";
 const Header1 = () => {
-  const isauth = true;
+  const router = useRouter();
+  const [isauth, setIsauth] = useState(false);
+  const handleLogout = () => {
+    setIsauth(false);
+    Cookies.remove("user");
+    router.push("/login");
+  };
+  useEffect(() => {
+    const key = Cookies.get("user");
+    if (key) {
+      setIsauth(true);
+      return;
+    }
+    setIsauth(false);
+  }, [isauth]);
   return (
     <div className=" flex justify-between border-b-2 border-gray-200 items-center h-20 px-10">
       <Image
-      alt="logo"
+        alt="logo"
         src={"/oyo.png"}
         width={200}
         height={200}
@@ -33,13 +49,21 @@ const Header1 = () => {
           icon={<IoCallOutline size={28} />}
         />
         <div className="flex items-center px-3 ">
-          <Image alt="user-avatar" src={'/avatar.png'} width={200} height={200} className="w-10 h-10" />
+          <Image
+            alt="user-avatar"
+            src={"/avatar.png"}
+            width={200}
+            height={200}
+            className="w-10 h-10"
+          />
           {isauth ? (
+            <h3 onClick={handleLogout} className=" font-bold cursor-pointer">
+              Logout
+            </h3>
+          ) : (
             <Link href={"/login"} className=" font-bold">
               Login / Signup
             </Link>
-          ) : (
-            <h3 className=" font-bold cursor-pointer">Logout</h3>
           )}
         </div>
       </div>

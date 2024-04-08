@@ -1,14 +1,6 @@
-"use client";
-
 import Logincard from "@/components/Logincard";
 import Head from "next/head";
-import { useState } from "react";
 const page = () => {
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [login, setLogin] = useState(false);
-
   return (
     <main>
       <Head>

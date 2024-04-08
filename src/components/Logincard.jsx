@@ -1,7 +1,60 @@
+"use client";
+import Cookies from "js-cookie";
+import { axiosClient } from "@/util/axiosClient";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { LuBadgePercent } from "react-icons/lu";
+import { useRouter } from "next/navigation";
 const Logincard = () => {
+  const router = useRouter();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [login, setLogin] = useState(false);
+  const handleToggle = () => {
+    setLogin(!login);
+  };
+  const handleLogin = async () => {
+    try {
+      const response = await axiosClient.post("/login", { email, password });
+      console.log(response);
+      if (response?.data?.success === true) {
+        Cookies.set("user", response?.data?.token);
+        router.push('/')
+        return toast.success(response?.data?.message);
+      } else {
+        return toast.error(response?.data?.message);
+      }
+    } catch (error) {
+      return toast.error(error.message);
+    } finally {
+      setEmail("");
+      setPassword("");
+    }
+  };
+  const handleSignup = async () => {
+    try {
+      const response = await axiosClient.post("/register", {
+        name,
+        email,
+        password,
+      });
+      console.log(response);
+      if (response?.data?.success === true) {
+        setLogin(true);
+        return toast.success(response?.data?.message);
+      } else {
+        setLogin(false);
+        return toast.error(response?.data?.message);
+      }
+    } catch (error) {
+      return toast.error(error.message);
+    } finally {
+      setName("");
+      setEmail("");
+      setPassword("");
+    }
+  };
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="bg-gradient-to-r from-red-500 to-red-700 p-2 w-full text-white ">
@@ -17,28 +70,31 @@ const Logincard = () => {
           ""
         ) : (
           <input
+            value={name}
             type="text"
             placeholder="Enter your name..."
             className=" outline-none border my-3 rounded-md px-3 py-1 w-96 h-10"
-            // onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
           />
         )}
         <input
+          value={email}
           type="email"
           placeholder="Enter your email..."
           className=" outline-none border my-3 rounded-md px-3 py-1 w-96 h-10"
-        //   onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
+          value={password}
           type="password"
           placeholder="Enter yourt password..."
           className=" outline-none border my-3 rounded-md px-3 py-1 w-96 h-10"
-        //   onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <button
           type="submit"
           className="w-full p-2 text-lg font-bold bg-red-500 hover:cursor-pointer hover:bg-red-600 text-white my-5 rounded-md"
-          //   onClick={login ? handleLogin : handleSignup}
+          onClick={login ? handleLogin : handleSignup}
         >
           {login ? "Login " : " Sign Up"}
         </button>
@@ -48,7 +104,7 @@ const Logincard = () => {
         </span>
         <span
           className="text-red-500 underline hover:cursor-pointer"
-          // onClick={handleToggle}
+          onClick={handleToggle}
         >
           {" "}
           {login ? "Sign Up" : "Login"}
