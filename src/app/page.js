@@ -4,7 +4,6 @@ import Header2 from "@/components/Header2";
 import Header3 from "@/components/Header3";
 import Header4 from "@/components/Header4";
 import Poster from "@/components/Poster";
-import Head from "next/head";
 export const metadata = {
     title: "OYO : India`s Best Online Hotel Booking Site For Sanitized Stay.",
 }

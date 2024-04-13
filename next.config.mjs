@@ -7,7 +7,28 @@ const nextConfig = {
   },
   images: {
     disableStaticImages: true,
-    domains: ["img1.10bestmedia.com"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'img1.10bestmedia.com',
+        pathname: '**',
+      },
+      {
+        protocol:'https',
+        hostname:'images.oyoroomscdn.com'
+      },
+      {
+        protocol:'https',
+        hostname:'www.freeiconspng.com'
+      },   {
+        protocol:'https',
+        hostname:'w7.pngwing.com'
+      },
+      {
+        protocol:"https",
+        hostname:'e7.pngegg.com'
+      }
+    ],
   },
 };
 
