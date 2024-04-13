@@ -5,15 +5,13 @@ import Header3 from "@/components/Header3";
 import Header4 from "@/components/Header4";
 import Poster from "@/components/Poster";
 import Head from "next/head";
-
+export const metadata = {
+    title: "OYO : India`s Best Online Hotel Booking Site For Sanitized Stay.",
+}
 export default function Home() {
   return (
-    <main>
-      <Head>
-        <title>
-          OYO : India`s Best Online Hotel Booking Site For Sanitized Stay.
-        </title>
-      </Head>
+  
+
       <div className=" w-full">
         <Header1 />
         <Header2 />
@@ -22,6 +20,5 @@ export default function Home() {
         <Header4 />
         <Footer />
       </div>
-    </main>
   );
 }

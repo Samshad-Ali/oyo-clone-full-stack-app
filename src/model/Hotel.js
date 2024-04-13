@@ -2,20 +2,16 @@ import mongoose from "mongoose";
 
 const hotelSchema = new mongoose.Schema(
   {
-    name: {
+    title: {
       type: String,
-      required: true,
       trim: true,
-      unique: true,
     },
     description: {
       type: String,
-      required: true,
       trim: true,
     },
     banner: {
       type: String,
-      required: true,
     },
     gallery: [
       {
@@ -38,4 +34,4 @@ const hotelSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.models?.hotel || mongoose.model("hotel", hotelSchema);
+export default mongoose.models?.allhotels || mongoose.model("allhotels", hotelSchema);

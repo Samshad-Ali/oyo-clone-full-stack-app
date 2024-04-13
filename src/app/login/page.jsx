@@ -1,11 +1,19 @@
+"use client";
 import Logincard from "@/components/Logincard";
-import Head from "next/head";
+import { useEffect } from "react";
+import Cookie from "js-cookie";
+import { useRouter } from "next/navigation";
+
 const page = () => {
+  const router = useRouter();
+  useEffect(() => {
+    const token = Cookie.get("user");
+    if (token) {
+      router.push("/");
+    }
+  }, []);
   return (
-    <main>
-      <Head>
-        <title>OYO - Login !</title>
-      </Head>
+   
       <div>
         <div className="flex h-screen px-10 gap-3 justify-center items-center relative bg-login-background bg-no-repeat bg-cover opacity-95">
           <div className=" absolute top-10 left-10 gap-2 flex items-center text-white">
@@ -19,7 +27,7 @@ const page = () => {
               There’s a smarter way to OYO around
             </p>
             <p className=" text-xl text-justify">
-              Sign up with your phone number and get exclusive access to
+              Sign up with your phone number anzd get exclusive access to
               discounts and savings on OYO stays and with our many travel
               partners.
             </p>
@@ -29,7 +37,7 @@ const page = () => {
           </div>
         </div>
       </div>
-    </main>
+    
   );
 };
 

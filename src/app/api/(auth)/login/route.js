@@ -6,7 +6,7 @@ import { dbConnect } from "@/database/dbConnect";
 
 export async function POST(req) {
   try {
-    dbConnect();
+   await dbConnect();
     const { email, password } = await req.json();
     if (!email || !password) {
       return NextResponse.json({
