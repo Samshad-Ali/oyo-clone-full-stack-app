@@ -24,29 +24,31 @@ const Header1 = () => {
     setIsauth(false);
   }, [isauth]);
   return (
-    <div className=" flex justify-between border-b-2 border-gray-200 items-center h-20 px-10">
-      <Image
-        alt="logo"
-        src={"/oyo.png"}
-        width={200}
-        height={200}
-        className=" w-28 h-28"
-      />
-      <div className=" h-full flex">
+    <div className=" flex justify-between border-b-2 border-gray-200 items-center h-20 px-2 lg:px-10">
+      <a href="/">
+        <Image
+          alt="logo"
+          src={"/oyo.png"}
+          width={200}
+          height={200}
+          className="w-24 lg:w-28"
+        />
+      </a>
+      <div className="   h-full flex">
         <Block
-          icon={<PiSuitcaseSimple size={28} />}
+          icon={<PiSuitcaseSimple size={26} />}
           title={"OYO for business"}
           para={"Trusted by 5000 corporates."}
         />
         <Block
           title={"List your property"}
           para={"Start earning in 30 min."}
-          icon={<PiBuildings size={28} />}
+          icon={<PiBuildings size={26} />}
         />
         <Block
           title={"987654321"}
           para={"Call us to book now."}
-          icon={<IoCallOutline size={28} />}
+          icon={<IoCallOutline size={26} />}
         />
         <div className="flex items-center px-3 ">
           <Image

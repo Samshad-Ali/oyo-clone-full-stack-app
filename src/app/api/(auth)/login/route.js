@@ -31,8 +31,8 @@ export async function POST(req) {
         message: "invalid credentials !",
       });
     }
-    const token = jwt.sign({ userId: isUserExist._id }, "secret_key", {
-      expiresIn: "1d",
+    const token = jwt.sign({ userId: isUserExist._id }, process.env.SECRET_KEY, {
+      expiresIn: "7d",
     });
     return NextResponse.json({
         success:true,

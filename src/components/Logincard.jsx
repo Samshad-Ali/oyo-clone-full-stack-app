@@ -1,6 +1,5 @@
 "use client";
 import Cookies from "js-cookie";
-import { axiosClient } from "@/util/axiosClient";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { LuBadgePercent } from "react-icons/lu";
@@ -16,14 +15,17 @@ const Logincard = () => {
   };
   const handleLogin = async () => {
     try {
-      const response = await axiosClient.post("/login", { email, password });
-      console.log(response);
-      if (response?.data?.success === true) {
-        Cookies.set("user", response?.data?.token);
-        router.push('/')
-        return toast.success(response?.data?.message);
+      const res = await fetch(`${process.env.BASE_URL}/api/login`, {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+      });
+      const response = await res.json();
+      if (response?.success === true) {
+        Cookies.set("user", response?.token, { expires: 7 });
+        router.back();
+        return toast.success(response?.message);
       } else {
-        return toast.error(response?.data?.message);
+        return toast.error(response?.message);
       }
     } catch (error) {
       return toast.error(error.message);
@@ -34,18 +36,17 @@ const Logincard = () => {
   };
   const handleSignup = async () => {
     try {
-      const response = await axiosClient.post("/register", {
-        name,
-        email,
-        password,
+      const res = await fetch(`${process.env.BASE_URL}/api/register`, {
+        method: "POST",
+        body: JSON.stringify({ name, email, password }),
       });
-      console.log(response);
-      if (response?.data?.success === true) {
+      const response = await res.json();
+      if (response?.success === true) {
         setLogin(true);
-        return toast.success(response?.data?.message);
+        return toast.success(response?.message);
       } else {
         setLogin(false);
-        return toast.error(response?.data?.message);
+        return toast.error(response?.message);
       }
     } catch (error) {
       return toast.error(error.message);

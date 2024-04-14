@@ -1,10 +1,10 @@
 
 const Block = ({title,icon , para}) => {
   return (
-    <div className=" border-r border-gray-200  h-full gap-2 flex items-center px-3">
+    <div className=" border-r  border-gray-200  h-full gap-2 flex items-center px-2 lg:px-3">
    <span>{icon}</span>
       <div>
-        <h3 className=" font-bold">{title}</h3>
+        <h3 className="lg:text-base text-xs font-bold">{title}</h3>
         <p className=" text-gray-500 text-xs line-clamp-1">
           {para}
         </p>

@@ -9,7 +9,7 @@ const page = () => {
   useEffect(() => {
     const token = Cookie.get("user");
     if (token) {
-      router.push("/");
+      router.back();
     }
   }, []);
   return (

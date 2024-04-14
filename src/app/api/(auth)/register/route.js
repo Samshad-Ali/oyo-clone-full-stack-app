@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import { User } from "@/model/User";
 import { dbConnect } from "@/database/dbConnect";
 
@@ -28,10 +27,7 @@ export async function POST(req) {
       email,
       password: encryptedPassword,
     });
-    const savedUser = await newUser.save();
-    const token = jwt.sign({ userId: savedUser._id }, "secret_key", {
-      expiresIn: "1d",
-    });
+    await newUser.save();
     return NextResponse.json({
         success:true,
       message: "user successfully registered",
