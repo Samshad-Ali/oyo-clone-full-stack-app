@@ -43,7 +43,7 @@ const Hotel = ({ data }) => {
           </span>
           <Link
             href={`/hotels/${data?._id}`}
-            className="p-2 px-5 text-sm hover:scale-105 transition-all   border border-red-500 rounded-sm text-red-500 font-bold "
+            className="p-2 px-5 text-sm underline hover:scale-105 transition-all rounded-sm text-red-500 font-bold "
           >
             See Details
           </Link>
