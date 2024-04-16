@@ -8,7 +8,6 @@ export async function GET(req){
         await dbConnect();
         const searchParams = req.nextUrl.searchParams;
         const query = searchParams.get("price");
-        console.log(query)
         const isHotel = await Hotel.find({price:{$lte:query}})
         return NextResponse.json({
             success:true,

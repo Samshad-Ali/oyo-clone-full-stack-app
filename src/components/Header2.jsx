@@ -23,11 +23,11 @@ const Header2 = () => {
     ];
     return (
       <div>
-        <div className=" flex px-2 lg:px-10 py-3 bg-gray-100 justify-between">
+        <div className=" flex flex-wrap gap-4 px-2 justify-center lg:px-10 py-3 bg-gray-100 md:justify-between">
           {
               List.map((e)=>{
                   return(
-                      <span className="text-gray-700 flex items-center gap-1" key={e.name} >{e.name} <MdKeyboardArrowDown/> </span>
+                      <span className="text-gray-700 rounded-md px-2 bg-white  flex items-center gap-1" key={e.name} >{e.name} <MdKeyboardArrowDown/> </span>
                   )
               })
           }

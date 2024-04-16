@@ -2,27 +2,22 @@
 
 const Filter = ({list,priceRangeHandler,price,setPrice,setChecklist,checklist}) => {
   const checklistHandler = (e)=>{
-    let newChecklist = [];
     if(e.target.checked){
-      newChecklist.push(e.target.value)
-      console.log(newChecklist)
-      setChecklist(newChecklist);
-      console.log(checklist)
+      setChecklist(e.target.value);
       return;
     }
-    newChecklist = newChecklist.filter((i) => i !== e.target.value);
-    setChecklist(newChecklist);
+    setChecklist(null)
   }
   return (
     <div className="w-full flex flex-col gap-4 border border-red-500 rounded-md p-4">
-      <div className="flex gap-2  flex-col">
+      <div className="flex gap-2 sm:gap-8 md:gap-2 flex-col sm:flex-row  md:flex-col">
         <div className="flex flex-col gap-2">
           <label htmlFor="price" className="  font-bold">
             Price :{" "}
           </label>
           <input
             type="range"
-            className="w-full h-4 outline-none  accent-red-500  transition-colors duration-200 ease-in-out"
+            className=" w-60 sm:w-80 md:w-full h-4 outline-none  accent-red-500  transition-colors duration-200 ease-in-out"
             name="price"
             id="price"
             defaultValue={price}
@@ -34,13 +29,13 @@ const Filter = ({list,priceRangeHandler,price,setPrice,setChecklist,checklist}) 
         </div>
         <button
         onClick={priceRangeHandler}
-        className="p-2 px-6 font-semibold bg-green-500 text-white rounded-sm cursor-pointer">
+        className="p-2 h-fit self-start sm:self-center md:self-start px-6 font-semibold bg-green-500 text-white rounded-sm cursor-pointer">
           Search
         </button>
       </div>
-      {/* <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2">
         <h3 className=" font-semibold">Filter by Facilities : </h3>
-        <div className="flex-col flex gap-2">
+        <div className="flex-col gap-1 sm:flex-row sm:gap-4 md:flex-col flex md:gap-2">
             {
               list?.map((item,idx)=> <div key={idx} className="flex gap-2">
               <input 
@@ -52,7 +47,7 @@ const Filter = ({list,priceRangeHandler,price,setPrice,setChecklist,checklist}) 
             }
 
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

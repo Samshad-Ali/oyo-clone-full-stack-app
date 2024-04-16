@@ -57,7 +57,7 @@ const Logincard = () => {
     }
   };
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className=" w-full flex flex-col items-center justify-center">
       <div className="bg-gradient-to-r from-red-500 to-red-700 p-2 w-full text-white ">
         <div className="flex items-center ml-5 gap-2">
           <LuBadgePercent size={18} />
@@ -74,7 +74,7 @@ const Logincard = () => {
             value={name}
             type="text"
             placeholder="Enter your name..."
-            className=" outline-none border my-3 rounded-md px-3 py-1 w-96 h-10"
+            className=" outline-none border my-3 rounded-md px-3 py-1 w-full md:w-96 h-10"
             onChange={(e) => setName(e.target.value)}
           />
         )}
@@ -82,14 +82,14 @@ const Logincard = () => {
           value={email}
           type="email"
           placeholder="Enter your email..."
-          className=" outline-none border my-3 rounded-md px-3 py-1 w-96 h-10"
+          className=" outline-none border my-3 rounded-md px-3 py-1 w-full md:w-96 h-10"
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           value={password}
           type="password"
           placeholder="Enter yourt password..."
-          className=" outline-none border my-3 rounded-md px-3 py-1 w-96 h-10"
+          className=" outline-none border my-3 rounded-md px-3 py-1 w-full md:w-96 h-10"
           onChange={(e) => setPassword(e.target.value)}
         />
         <button

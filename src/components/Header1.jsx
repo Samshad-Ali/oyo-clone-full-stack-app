@@ -7,9 +7,16 @@ import Cookies from "js-cookie";
 import { PiSuitcaseSimple, PiBuildings } from "react-icons/pi";
 import { IoCallOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import { FaBarsStaggered } from "react-icons/fa6";
+import Phonenav from "./Phonenav";
+
 const Header1 = () => {
   const router = useRouter();
   const [isauth, setIsauth] = useState(false);
+  const [toggle,setToggle] = useState(false);
+  const handleToggle=()=>{
+    setToggle(!toggle)
+  }
   const handleLogout = () => {
     setIsauth(false);
     Cookies.remove("user");
@@ -24,7 +31,7 @@ const Header1 = () => {
     setIsauth(false);
   }, [isauth]);
   return (
-    <div className=" flex justify-between border-b-2 border-gray-200 items-center h-20 px-2 lg:px-10">
+    <div className="relative flex justify-between  border-b-2 border-gray-200 items-center h-20 px-2 lg:px-10">
       <a href="/">
         <Image
           alt="logo"
@@ -34,7 +41,10 @@ const Header1 = () => {
           className="w-24 lg:w-28"
         />
       </a>
-      <div className="   h-full flex">
+      <button
+      onClick={handleToggle}
+      className="text-red-500 z-50 absolute top-7 right-4 block md:hidden"> <FaBarsStaggered size={25} /> </button>
+      <div className="hidden md:flex   h-full">
         <Block
           icon={<PiSuitcaseSimple size={26} />}
           title={"OYO for business"}
@@ -69,8 +79,15 @@ const Header1 = () => {
           )}
         </div>
       </div>
+          <Phonenav 
+          toggle={toggle}
+          isauth={isauth}
+          handleLogout={handleLogout}
+          />
     </div>
   );
 };
 
 export default Header1;
+
+

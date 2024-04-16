@@ -6,9 +6,7 @@ export async function GET(req){
     try {
         await dbConnect();
         const searchParams = req.nextUrl.searchParams;
-        console.log(searchParams)
-        const query = searchParams("key");
-        console.log(query)
+        const query = searchParams.get("key");
         const isHotel = await Hotel.find({'facilities.name':{$in:query}})
         return NextResponse.json({
             success:true,

@@ -6,7 +6,6 @@ export async function POST(req) {
   try {
    await dbConnect();
     const newHotel =  await req.json();
-    console.log(newHotel);
     await Hotel.create(newHotel);
     return NextResponse.json({
         success:true,

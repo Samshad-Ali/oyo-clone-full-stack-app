@@ -10,11 +10,16 @@ const page = () => {
   const [data, setData] = useState(null);
   const [list, setList] = useState(null);
   const [price, setPrice] = useState(1000);
-  const [checklist, setChecklist] = useState([]);
+  const [checklist, setChecklist] = useState(null);
   const params = useSearchParams();
   const city = params.get("city");
-console.log(checklist)
-
+  const filterHandler = async () => {
+    const res = await fetch(
+      `${process.env.BASE_URL}/api/filters?key=${checklist}`
+    );
+    const response = await res.json();
+    setData(response?.data);
+  };
 
   const priceRangeHandler = async () => {
     const res = await fetch(
@@ -38,12 +43,20 @@ console.log(checklist)
     getHotelsData(city);
     fetchingFacilitiesData();
   }, []);
+
+  useEffect(()=>{
+    if(checklist){
+      filterHandler()
+    }else{
+      getHotelsData(city)
+    }
+  },[checklist])
   if (data === null) return <Loader />;
   return (
     <>
       <Header1 />
-      <div className=" w-full px-2 lg:px-10 flex flex-col items-center gap-4  p-4">
-        <div className=" self-start w-full">
+      <div className=" md:flex-row flex-col w-full px-2 xl:px-10 flex items-center gap-4  p-4">
+        <div className=" self-start w-full md:w-[25%]">
           <Filter
             checklist={checklist}
             setChecklist={setChecklist}
@@ -55,7 +68,7 @@ console.log(checklist)
             setData={setData}
           />
         </div>
-        <div className="w-full">
+        <div className=" w-full md:w-[75%]">
           {data
             ? data?.map((item) => {
                 return <Hotel key={item?._id} data={item} />;
