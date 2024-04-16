@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 
-const page = () => {
+const Page = () => {
   const [data, setData] = useState(null);
   const [auth, setAuth] = useState(false);
   const params = useParams();
@@ -118,4 +118,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

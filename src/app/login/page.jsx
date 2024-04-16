@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Cookie from "js-cookie";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   useEffect(() => {
     const token = Cookie.get("user");
@@ -41,4 +41,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

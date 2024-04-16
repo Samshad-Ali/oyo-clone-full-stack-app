@@ -6,7 +6,7 @@ import Loader from "@/components/Loader";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const page = () => {
+const Page = () => {
   const [data, setData] = useState(null);
   const [list, setList] = useState(null);
   const [price, setPrice] = useState(1000);
@@ -80,4 +80,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
